@@ -36,10 +36,11 @@ class MainActivity : ComponentActivity() {
                         .padding(8.dp),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    GreetingImage(
-                        stringResource(R.string.happy_birthday_text),
-                        from = stringResource(R.string.signature_text),
-                        modifier = Modifier.padding(8.dp))
+//                    GreetingImage(
+//                        stringResource(R.string.happy_birthday_text),
+//                        from = stringResource(R.string.signature_text),
+//                        modifier = Modifier.padding(8.dp))
+                    JetpackComposeTutorial()
                 }
             }
         }
@@ -90,6 +91,40 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
     }
 }
 
+@Composable
+fun JetpackComposeTutorial(modifier: Modifier = Modifier) {
+    val header = painterResource(R.drawable.bg_compose_background)
+
+    Column(
+        verticalArrangement = Arrangement.Top,
+        modifier = modifier) {
+        Image(
+            painter = header,
+            // This is an image, so no need to have a description for it.
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth
+        )
+        Text(
+            text = stringResource(R.string.article_title),
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(16.dp)
+        )
+        Text(
+            text = stringResource(R.string.body_1),
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(
+                start = 16.dp,
+                end = 16.dp)
+        )
+        Text(
+            text = stringResource(R.string.body_2),
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
@@ -98,5 +133,13 @@ fun BirthdayCardPreview() {
             message = stringResource(R.string.happy_birthday_text),
             from = stringResource(R.string.signature_text)
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun JetpackComposeTutorialPreview() {
+    MyApplicationTheme {
+        JetpackComposeTutorial()
     }
 }
